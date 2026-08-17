@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel — Catálogo Algo+</title>
+<meta name="theme-color" content="#16161d">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧊</text></svg>">
+<link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+
+<!-- ============ LOGIN ============ -->
+<div id="tela-login" class="login-tela">
+  <form id="form-login" class="login-card">
+    <div class="login-logo">🧊</div>
+    <h1>Painel do Catálogo</h1>
+    <p>Entre com a senha de administrador.</p>
+    <input type="password" id="login-senha" placeholder="Senha" autocomplete="current-password" required>
+    <button type="submit" class="btn btn-primario">Entrar</button>
+    <p class="login-erro" id="login-erro" hidden></p>
+  </form>
+</div>
+
+<!-- ============ APP ============ -->
+<div id="app" hidden>
+  <aside class="sidebar">
+    <div class="side-logo">🧊 <strong>Catálogo</strong></div>
+    <nav class="side-nav">
+      <button class="nav-item ativo" data-view="dashboard">📊 Dashboard</button>
+      <button class="nav-item" data-view="categorias">🗂️ Categorias</button>
+      <button class="nav-item" data-view="produtos">📦 Produtos</button>
+      <button class="nav-item" data-view="pedidos">🛒 Pedidos <span class="badge-novo" id="badge-pedidos" hidden></span></button>
+      <button class="nav-item" data-view="config">⚙️ Configurações</button>
+    </nav>
+    <div class="side-rodape">
+      <a href="/" target="_blank">Ver vitrine ↗</a>
+      <button class="nav-item" id="btn-sair">🚪 Sair</button>
+    </div>
+  </aside>
+
+  <main class="conteudo-admin">
+    <!-- dashboard -->
+    <section class="view ativo" id="view-dashboard">
+      <h2>Dashboard</h2>
+      <div class="cards-stats" id="stats"></div>
+    </section>
+
+    <!-- categorias -->
+    <section class="view" id="view-categorias">
+      <div class="view-cabecalho">
+        <h2>Categorias</h2>
+        <button class="btn btn-primario" id="btn-nova-categoria">+ Nova categoria</button>
+      </div>
+      <div class="card-lista" id="lista-categorias"></div>
+    </section>
+
+    <!-- produtos -->
+    <section class="view" id="view-produtos">
+      <div class="view-cabecalho">
+        <h2>Produtos</h2>
+        <button class="btn btn-primario" id="btn-novo-produto">+ Novo produto</button>
+      </div>
+      <div class="card-lista" id="lista-produtos"></div>
+    </section>
+
+    <!-- pedidos -->
+    <section class="view" id="view-pedidos">
+      <div class="view-cabecalho">
+        <h2>Pedidos</h2>
+        <div class="filtro-status">
+          <button class="filtro ativo" data-status="">Todos</button>
+          <button class="filtro" data-status="novo">Novos</button>
+          <button class="filtro" data-status="visto">Vistos</button>
+          <button class="filtro" data-status="atendido">Atendidos</button>
+          <button class="filtro" data-status="cancelado">Cancelados</button>
+        </div>
+      </div>
+      <div class="card-lista" id="lista-pedidos"></div>
+    </section>
+
+    <!-- config -->
+    <section class="view" id="view-config">
+      <h2>Configurações</h2>
+      <form id="form-config" class="form-painel form-card">
+        <label>Título do site
+          <input name="titulo" id="cfg-titulo" required>
+        </label>
+        <label>Descrição
+          <textarea name="descricao" id="cfg-descricao" rows="2"></textarea>
+        </label>
+        <label>Tema
+          <select name="tema" id="cfg-tema">
+            <option value="claro">Claro</option>
+            <option value="escuro">Escuro</option>
+          </select>
+        </label>
+        <label>WhatsApp de contato (só números, com DDI — ex: 5535999999999)
+          <input name="contato_whatsapp" id="cfg-whatsapp" placeholder="5535999999999">
+        </label>
+        <label>Email de contato (opcional)
+          <input name="contato_email" id="cfg-email">
+        </label>
+        <label class="check">
+          <input type="checkbox" id="cfg-pedido-personalizado">
+          Pedido personalizado (cliente informa nome/WhatsApp antes de enviar)
+        </label>
+        <label>Nota de rodapé
+          <input name="nota_rodape" id="cfg-rodape">
+        </label>
+        <button type="submit" class="btn btn-primario">Salvar configurações</button>
+        <span id="cfg-salvo" class="ok-msg" hidden>✅ Salvo!</span>
+      </form>
+
+      <h3>Alterar senha</h3>
+      <form id="form-senha" class="form-painel form-card">
+        <label>Senha atual
+          <input type="password" name="senha_atual" id="senha-atual" required>
+        </label>
+        <label>Nova senha
+          <input type="password" name="nova_senha" id="nova-senha" required minlength="4">
+        </label>
+        <button type="submit" class="btn">Alterar senha</button>
+        <span id="senha-msg" class="ok-msg" hidden></span>
+      </form>
+
+      <div class="info-sistema" id="info-sistema"></div>
+    </section>
+  </main>
+</div>
+
+<!-- ============ MODAL ============ -->
+<div class="modal-overlay" id="modal" hidden>
+  <div class="modal modal-lg" id="modal-box">
+    <div class="modal-conteudo" id="modal-conteudo"></div>
+  </div>
+</div>
+
+<script src="/js/comum.js"></script>
+<script src="/js/admin.js"></script>
+</body>
+</html>

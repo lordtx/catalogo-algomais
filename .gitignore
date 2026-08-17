@@ -1,0 +1,7 @@
+node_modules/
+dados/
+.env-deploy
+.git-token
+.deploy-segredos
+*.log
+qa/*.png

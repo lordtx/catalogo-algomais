@@ -1,0 +1,22 @@
+{
+  "name": "catalogo-virtual",
+  "version": "1.0.0",
+  "description": "Catálogo Virtual — vitrine de produtos com painel admin (categorias, produtos, fotos, variedades e pedidos via WhatsApp)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1111.0",
+    "better-sqlite3": "^11.7.0",
+    "express": "^4.21.2",
+    "multer": "^2.0.1",
+    "pdfkit": "^0.19.1",
+    "pg": "^8.23.0"
+  },
+  "license": "UNLICENSED",
+  "private": true
+}

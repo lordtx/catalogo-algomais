@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Catálogo Algo+</title>
+<meta name="description" content="Impressão 3D sob medida: decoração, personalizados e utilidades.">
+<meta name="theme-color" content="#16161d">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧊</text></svg>">
+<link rel="stylesheet" href="/css/estilo.css">
+</head>
+<body class="tema-claro">
+<div id="fundo"></div>
+
+<header class="cabecalho">
+  <div class="cabecalho-in">
+    <div class="marca">
+      <div class="marca-icone">🧊</div>
+      <div>
+        <h1 id="site-titulo">Catálogo Algo+</h1>
+        <p id="site-descricao">Impressão 3D sob medida</p>
+      </div>
+    </div>
+    <div class="busca">
+      <input id="busca" type="search" placeholder="Buscar produto…" autocomplete="off">
+    </div>
+  </div>
+</header>
+
+<nav class="categorias" id="categorias" aria-label="Categorias"></nav>
+
+<main class="conteudo">
+  <div class="grade" id="grade"></div>
+  <div class="vazio" id="vazio" hidden>
+    <div class="vazio-emoji">🔍</div>
+    <p id="vazio-texto">Nenhum produto encontrado.</p>
+  </div>
+</main>
+
+<footer class="rodape">
+  <p id="rodape-texto"></p>
+</footer>
+
+<!-- Botão flutuante do carrinho -->
+<div class="carrinho-wrap" id="carrinho-wrap">
+  <button class="carrinho-fab" id="carrinho-toggle" aria-label="Abrir pedido">
+    🛒 <span class="carrinho-badge" id="carrinho-badge" hidden>0</span>
+  </button>
+  <aside class="carrinho-painel" id="carrinho-painel">
+    <div class="carrinho-head">
+      <strong>Seu pedido</strong>
+      <button id="carrinho-fechar" aria-label="Fechar">✕</button>
+    </div>
+    <div class="carrinho-corpo" id="carrinho"></div>
+  </aside>
+</div>
+
+<!-- Modal do produto -->
+<div class="modal-overlay" id="modal" hidden>
+  <div class="modal">
+    <button class="modal-fechar" id="modal-fechar" aria-label="Fechar">✕</button>
+    <div class="galeria" id="galeria">
+      <div class="galeria-principal">
+        <img id="galeria-img" src="" alt="">
+      </div>
+      <div class="galeria-thumbs" id="galeria-thumbs"></div>
+    </div>
+    <div class="modal-info">
+      <span class="modal-categoria" id="modal-categoria"></span>
+      <h2 id="modal-nome"></h2>
+      <div class="modal-preco" id="modal-preco"></div>
+      <p class="modal-descricao" id="modal-descricao"></p>
+
+      <div class="variedades" id="variedades"></div>
+
+      <div class="unidade-linha">
+        <span>Unidade</span>
+        <select id="unidade-seletor" class="unidade-select">
+          <option value="un">Unidade (un.)</option>
+          <option value="dz">Dezena (10)</option>
+        </select>
+      </div>
+
+      <div class="quantidade-linha">
+        <span>Quantidade</span>
+        <div class="qtd-controle">
+          <button id="qtd-menos" aria-label="Diminuir">−</button>
+          <span id="qtd-valor">1</span>
+          <button id="qtd-mais" aria-label="Aumentar">+</button>
+        </div>
+      </div>
+
+      <button class="botao-add" id="btn-add-carrinho">🛒 Adicionar ao pedido</button>
+      <p id="modal-aviso" class="pedido-ok"></p>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de finalização do pedido -->
+<div class="modal-overlay" id="modal-finalizar" hidden>
+  <div class="modal modal-final">
+    <button class="modal-fechar" id="modal-finalizar-fechar" aria-label="Fechar">✕</button>
+    <div class="modal-info">
+      <h2>Finalizar pedido</h2>
+      <div class="finalizar-itens" id="finalizar-itens"></div>
+      <div class="finalizar-total" id="finalizar-total"></div>
+
+      <form id="form-finalizar" class="form-pedido">
+        <input id="finalizar-nome" type="text" placeholder="Seu nome" autocomplete="name" required>
+        <input id="finalizar-whatsapp" type="tel" placeholder="Seu WhatsApp (com DDD)" autocomplete="tel" required>
+        <textarea id="finalizar-obs" rows="2" placeholder="Observação (opcional)"></textarea>
+        <button type="submit" class="botao-pedir" id="finalizar-botao">
+          <span class="wa-icone">📦</span> Enviar pedido
+        </button>
+      </form>
+      <p class="pedido-erro" id="finalizar-erro" hidden></p>
+      <div id="finalizar-ok" hidden></div>
+      <div id="finalizar-pdf" hidden></div>
+      <div id="finalizar-wa" hidden></div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/comum.js"></script>
+<script src="/js/app.js"></script>
+</body>
+</html>
