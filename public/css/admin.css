@@ -54,6 +54,9 @@ body {
 
 /* ---------- layout app ---------- */
 #app { display: flex; min-height: 100vh; }
+/* CRÍTICO: o atributo hidden do #app (painel sem login) deve esconder o painel,
+   senão `display:flex` acima o revela ao rolar a página. */
+#app[hidden] { display: none; }
 .sidebar {
   width: 230px; flex: 0 0 230px;
   background: #16161d;
