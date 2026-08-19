@@ -24,11 +24,21 @@ body {
 }
 
 /* ---------- login ---------- */
+/* Tela de login isolada: cobre a viewport inteira, fixa, esconde o que estiver por baixo.
+   Só some quando o painel (logado) entra. */
 .login-tela {
+  position: fixed; inset: 0; z-index: 1000;
   min-height: 100vh;
+  height: 100%;
+  overflow: hidden;
   display: grid; place-items: center;
   padding: 20px;
+  background: var(--bg);
 }
+/* body travado (sem rolar) enquanto não logado */
+body.sem-sessao { overflow: hidden; height: 100vh; }
+/* quando há sessão, login some de vez e o painel ocupa a tela */
+body.com-sessao #tela-login { display: none !important; }
 .login-card {
   width: 100%; max-width: 380px;
   background: var(--card);

@@ -479,11 +479,27 @@ app.put('/api/admin/senha', exigirAdmin, async (req, res) => {
 app.get('/arquivos/:nome', (req, res) => storage.servir(req, res, req.params.nome));
 
 // painel admin: domínio dedicado ou caminho reserva
-app.get('/' + ADMIN_PATH, (_req, res) => {
-  res.sendFile(path.join(PUBLICO_DIR, 'admin.html'));
+// no-store: força o navegador a SEMPRE baixar a versão nova do painel (nunca cacheado)
+const adminHtml = path.join(PUBLICO_DIR, 'admin.html');
+function servirPainel(res) {
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0');
+  res.setHeader('Pragma', 'no-cache');
+  res.setHeader('Expires', '0');
+  res.sendFile(adminHtml);
+}
+// CSS/JS do painel também sem cache (senão o navegador mantém a versão com bug)
+app.get('/css/admin.css', (req, res) => {
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0');
+  res.sendFile(path.join(PUBLICO_DIR, 'css/admin.css'));
 });
+app.get('/js/admin.js', (req, res) => {
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0');
+  res.sendFile(path.join(PUBLICO_DIR, 'js/admin.js'));
+});
+app.get('/' + ADMIN_PATH, (_req, res) => servirPainel(res));
 app.get('/', (req, res) => {
-  res.sendFile(path.join(PUBLICO_DIR, hostAdmin(req) ? 'admin.html' : 'index.html'));
+  if (hostAdmin(req)) return servirPainel(res);
+  res.sendFile(path.join(PUBLICO_DIR, 'index.html'));
 });
 
 app.use(express.static(PUBLICO_DIR));

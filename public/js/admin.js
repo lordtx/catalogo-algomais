@@ -26,8 +26,11 @@
   });
 
   async function entrar() {
+    document.body.classList.remove('sem-sessao');
+    document.body.classList.add('com-sessao');
     $('#tela-login').hidden = true;
     $('#app').hidden = false;
+    document.body.style.overflow = '';
     await carregarTudo();
   }
 
@@ -458,10 +461,16 @@
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') fecharModal(); });
 
   /* ---------------- init ---------------- */
+  // Sem sessão detectada: trava a página e mostra apenas o login (isolado).
   (async () => {
     try {
       await api('/api/admin/me', { noReload: true });
       entrar();
-    } catch { /* sem sessão → login */ }
+    } catch {
+      document.body.classList.add('sem-sessao');
+      document.body.style.overflow = 'hidden';
+      $('#tela-login').hidden = false;
+      $('#app').hidden = true;
+    }
   })();
 })();
