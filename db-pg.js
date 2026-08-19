@@ -167,9 +167,10 @@ async function definirSenha(senha) {
 /* ---- sessões ---- */
 async function criarSessao() {
   const token = crypto.randomBytes(32).toString('hex');
+  const horas = Number(process.env.SESSAO_HORAS) || 2;
   await pool.query(
-    "INSERT INTO sessoes (token, expira_em) VALUES ($1, to_char(now() + interval '12 hours', 'YYYY-MM-DD\"T\"HH24:MI:SS.000\"Z\"'))",
-    [token]
+    "INSERT INTO sessoes (token, expira_em) VALUES ($1, to_char(now() + ($2 || ' hours')::interval, 'YYYY-MM-DD\"T\"HH24:MI:SS.000\"Z\"'))",
+    [token, horas]
   );
   return token;
 }

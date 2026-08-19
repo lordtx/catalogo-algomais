@@ -31,6 +31,9 @@ const app = express();
 app.use(express.json({ limit: '2mb' }));
 app.use(express.urlencoded({ extended: true }));
 const PORT = Number(process.env.PORT) || 3000;
+// duração da sessão do admin (horas) — expira e pede senha de novo após inatividade
+const SESSAO_HORAS = Number(process.env.SESSAO_HORAS) || 2;
+const SESSAO_MS = SESSAO_HORAS * 3600 * 1000;
 const ADMIN_PATH = (process.env.PAINEL_ADM || 'painel-admin').replace(/^\/+|\/+$/g, '');
 const ADMIN_HOSTS = (process.env.PAINEL_ADM_HOSTS || '')
   .split(',').map(s => s.trim().toLowerCase().replace(/^https?:\/\//, '').replace(/\/+$/, '')).filter(Boolean);
@@ -293,7 +296,7 @@ app.post('/api/admin/login', async (req, res) => {
     return jsonErro(res, 401, 'Senha incorreta');
   }
   const token = await dbm.criarSessao();
-  res.setHeader('Set-Cookie', `ctl_sessao=${token}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${12 * 3600}`);
+  res.setHeader('Set-Cookie', `ctl_sessao=${token}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${Math.floor(SESSAO_MS / 1000)}`);
   res.json({ ok: true });
 });
 app.post('/api/admin/logout', exigirAdmin, async (req, res) => {

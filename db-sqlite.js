@@ -142,7 +142,8 @@ function definirSenha(senha) {
 /* ---- sessões ---- */
 function criarSessao() {
   const token = crypto.randomBytes(32).toString('hex');
-  const expira = new Date(Date.now() + 12 * 3600 * 1000).toISOString();
+  const horas = Number(process.env.SESSAO_HORAS) || 2;
+  const expira = new Date(Date.now() + horas * 3600 * 1000).toISOString();
   db.prepare('INSERT INTO sessoes (token, expira_em) VALUES (?, ?)').run(token, expira);
   return token;
 }
