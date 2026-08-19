@@ -402,6 +402,8 @@
     $('#cfg-descricao').value = config.descricao || '';
     $('#cfg-tema').value = config.tema || 'claro';
     $('#cfg-whatsapp').value = config.contato_whatsapp || '';
+    $('#cfg-whatsapp-teste').value = config.contato_whatsapp_teste || '';
+    $('#cfg-whatsapp-modo').value = config.whatsapp_modo === 'teste' ? 'teste' : 'oficial';
     $('#cfg-email').value = config.contato_email || '';
     $('#cfg-pedido-personalizado').checked = config.pedido_personalizado !== false;
     $('#cfg-rodape').value = config.nota_rodape || '';
@@ -417,6 +419,8 @@
       descricao: $('#cfg-descricao').value.trim(),
       tema: $('#cfg-tema').value,
       contato_whatsapp: $('#cfg-whatsapp').value.trim(),
+      contato_whatsapp_teste: $('#cfg-whatsapp-teste').value.trim(),
+      whatsapp_modo: $('#cfg-whatsapp-modo').value === 'teste' ? 'teste' : 'oficial',
       contato_email: $('#cfg-email').value.trim(),
       pedido_personalizado: $('#cfg-pedido-personalizado').checked,
       nota_rodape: $('#cfg-rodape').value.trim(),

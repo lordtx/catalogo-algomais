@@ -95,8 +95,17 @@
             <option value="escuro">Escuro</option>
           </select>
         </label>
-        <label>WhatsApp de contato (só números, com DDI — ex: 5535999999999)
+        <label>Número de WhatsApp — qual o site usa
+          <select id="cfg-whatsapp-modo">
+            <option value="oficial">Oficial</option>
+            <option value="teste">Teste</option>
+          </select>
+        </label>
+        <label>WhatsApp OFICIAL (só números, com DDI — ex: 5535999999999)
           <input name="contato_whatsapp" id="cfg-whatsapp" placeholder="5535999999999">
+        </label>
+        <label>WhatsApp de TESTE (só números, com DDI)
+          <input name="contato_whatsapp_teste" id="cfg-whatsapp-teste" placeholder="5535999999999">
         </label>
         <label>Email de contato (opcional)
           <input name="contato_email" id="cfg-email">

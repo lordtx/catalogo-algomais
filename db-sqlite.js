@@ -321,6 +321,8 @@ function configPadrao() {
     fundo_tipo: process.env.FUNDO_TIPO || 'cor', // cor|imagem|video
     fundo_valor: process.env.FUNDO_VALOR || '#F5F1EA',
     contato_whatsapp: process.env.CONTATO_WHATSAPP || '',
+    contato_whatsapp_teste: process.env.CONTATO_WHATSAPP_TESTE || '',
+    whatsapp_modo: process.env.WHATSAPP_MODO || 'oficial', // oficial|teste — qual número o site usa
     contato_email: process.env.CONTATO_EMAIL || '',
     pedido_personalizado: (process.env.PEDIDO_PERSONALIZADO || '1') === '1', // 1 = cliente informa nome/whatsapp; 0 = botão direto WhatsApp
     nota_rodape: process.env.NOTA_RODAPE || '',

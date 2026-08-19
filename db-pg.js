@@ -373,6 +373,8 @@ function configPadrao() {
     fundo_tipo: process.env.FUNDO_TIPO || 'cor',
     fundo_valor: process.env.FUNDO_VALOR || '#F5F1EA',
     contato_whatsapp: process.env.CONTATO_WHATSAPP || '',
+    contato_whatsapp_teste: process.env.CONTATO_WHATSAPP_TESTE || '',
+    whatsapp_modo: process.env.WHATSAPP_MODO || 'oficial',
     contato_email: process.env.CONTATO_EMAIL || '',
     pedido_personalizado: (process.env.PEDIDO_PERSONALIZADO || '1') === '1',
     nota_rodape: process.env.NOTA_RODAPE || '',

@@ -163,6 +163,12 @@ function linkWhatsAppPedido(numero, resumo) {
   return n ? 'https://wa.me/' + n + '?text=' + encodeURIComponent(resumo) : '';
 }
 
+/* Resolve qual número de WhatsApp o site usa, conforme o modo do painel (oficial|teste). */
+function whatsappAtivo(cfg) {
+  if (cfg.whatsapp_modo === 'teste') return cfg.contato_whatsapp_teste || '';
+  return cfg.contato_whatsapp || '';
+}
+
 /* ============================================================
  * API PÚBLICA (vitrine do cliente)
  * ============================================================ */
@@ -263,7 +269,7 @@ app.post('/api/pedido', async (req, res) => {
     ok: true, id,
     pdf_url,
     total: total.toFixed(2),
-    whatsapp_url: linkWhatsAppPedido(cfg.contato_whatsapp, resumo),
+    whatsapp_url: linkWhatsAppPedido(whatsappAtivo(cfg), resumo),
   });
 });
 
